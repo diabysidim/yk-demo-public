@@ -1,0 +1,35 @@
+<% include partials/header1 %>
+
+<title>Citation</title>
+<link rel="icon" href="image/yk.PNG" />
+<% include partials/header2 %>
+
+<div class="editor-container">
+   
+   <div class="editor-content">
+       
+       <h1> Modifier la citation </h1>
+       
+       <form action="/quote/<%=quote._id%>?_method=PUT" method="POST">
+                 
+                <input name="content" id="cont" type="hidden" value="<%=quote.content%>">
+                <trix-editor input="cont" class="trix-content"> </trix-editor>
+                <button class="risk"> Modifier </button>
+    
+        </form> 
+        
+       <a href="/" class="risk"> Annuler</a>
+       
+   </div>
+   
+    
+</div>
+
+
+
+
+
+
+
+
+<%include partials/footer%>

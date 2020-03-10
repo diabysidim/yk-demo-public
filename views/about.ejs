@@ -1,0 +1,89 @@
+
+<% include partials/header1 %>
+
+<title>A propos</title>
+<link rel="icon" href="image/yk.PNG" />
+<% include partials/header2 %>
+
+ <div class="about-container">
+ 	
+
+
+ 	<section id="about-title" >
+
+		<div id="title-image-text">
+			<div class="title-image"></div>
+			<div class="title-text">
+				<div class="title-name">
+					<h1> Yasmie Kaly</h1>
+					<hr>
+					<h2> Auteur du Livre</h2>
+				</div>
+				
+			</div>
+
+
+		</div>
+		
+	</section>
+	
+	
+	<% abouts.forEach(function(about){ %>
+
+	<section id="text-content">
+		
+		<div class="section-text">
+
+			<%-about.content%>
+
+		</div>
+
+
+	</section>
+	
+	<div class="change-bar" style="padding-left: 0; margin-top: 30px;">
+		
+		<% if(currentUser){ %>
+			
+			<form action="/about/<%=about._id%>?_method=DELETE" method="POST">
+				<button class="risk go-button"> Suprimer</button>
+			</form>
+			
+			<form action="/about/<%=about._id%>/edit" method="GET">
+				<button class="risk go-button"> Modifier</button>
+			</form>
+			
+			<%	} %>
+
+	</div>
+		<%	}) %>
+
+	
+	
+
+
+		<div  style="display: flex; justify-content: center;"> 
+	
+		<% if(currentUser){ %>
+	
+			<form action="about/new " method="GET" >
+						<button class="go-button" style=" margin: 50px auto;"> Ajouter une section</button>
+			</form>
+	
+		<% } %>
+	</div>
+		
+
+ </div>
+
+
+
+	
+
+
+		
+
+
+
+
+<% include partials/footer %>

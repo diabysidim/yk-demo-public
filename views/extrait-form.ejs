@@ -1,0 +1,34 @@
+<% include partials/header1 %>
+
+<title>Extrait</title>
+<link rel="icon" href="image/yk.PNG" />
+<% include partials/header2 %>
+
+<div class="editor-container">
+   
+   <div class="editor-content">
+    <h2 style="margin-top:50px; margin-bottom:20px; font-size:2em; text-align: center;"> Creer un Extrait</h2>
+
+    <form action="/extraits/new" method="POST" >   
+        
+        
+   
+    
+                Titre: <input name="title"style="margin-bottom:10px;">
+    
+                <input name="content" id="cont" type="hidden">
+                <trix-editor input="cont" class="trix-content"> </trix-editor>
+                <!--    <br>-->
+                <!--<textarea name="content" style="height:500px; width:70%;"></textarea>-->
+                <button class="risk"> create </button> 
+                <a href="/extraits">annuler</a>
+    
+</form>
+    
+ </div>
+   
+    
+</div>
+
+
+<% include partials/footer%>

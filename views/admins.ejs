@@ -1,0 +1,47 @@
+<% include partials/header1 %>
+
+<title>Admins</title>
+<link rel="icon" href="image/yk.PNG" />
+<% include partials/header2 %>
+
+
+<div class="register-container" >
+
+
+	
+
+	<div class="admins-form">
+
+		<h2> Manager les admins</h2>
+		
+		<table>
+		<% users.forEach(function(user){ %>
+		<tr>
+			<td> <%=user.name%> <%=user.lastName%></td>
+			<td> <% if(currentUser){ %>
+	    				
+	    		<form action="/admins/<%=user._id%>?_method=DELETE" method="POST" style="margin: 0 0;">
+				<button  class="risk go-button" style="font-size: 0.5em; padding:0 10px;"> Supprimer</button>
+				</form>      
+
+    			<% }  %> </td>
+
+			<td> <% if(currentUser){ %>
+	    				
+	    		<form action="/admins/<%=user._id%>/edit" method="GET" style="margin: 0 0;">
+				<button  class="risk go-button" style="font-size: 0.5em; padding:0 10px;"> Modifier</button>
+				</form>      
+				 
+    			<% }  %></td>
+		</tr>
+
+		<%})%>
+	</table>
+	</div>
+
+	
+
+</div>
+
+
+<% include partials/footer %>

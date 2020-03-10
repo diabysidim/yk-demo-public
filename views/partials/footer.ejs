@@ -1,0 +1,30 @@
+
+
+
+    <div class="footer">
+        
+        
+        
+        <a href=""><i class="fab fa-facebook-square" style="color: #3B5998; font-size: 2em;"></i></a> 
+			 <a href=""><i class="fab fa-linkedin" style="color: #0077B5; font-size: 2em"></i></a> 
+			 <a href=""><i class="fab fa-instagram" style="color: #fb3958; font-size: 2em"></i></a> 
+			 <a href=""><i class="fab fa-twitter-square" style="color: #1DA1F2;font-size: 2em"></i></a>
+			 <a href="/temoignages"> Temoignages</a>
+        <% if(!currentUser){ %>
+            <a href="/login" >Se connecter</a>
+		
+		    <!--<a href="/register"> Se registrer</a>-->
+       
+        <% } else { %>
+    	     <a href="/logout"> Se deconnecter</a>
+    	     <a href="/control"> Centre de controle</a>
+
+	   <%	} %>
+	   
+    </div>
+
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.1.1/trix.js"></script> 
+<script type="text/javascript" src="/asset/js/book.js"></script>
+</body>
+</html>

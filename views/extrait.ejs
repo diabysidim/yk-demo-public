@@ -1,0 +1,148 @@
+<% include partials/header1 %>
+
+<title>Extrait</title>
+<link rel="icon" href="image/yk.PNG" />
+<% include partials/header2 %>
+
+
+
+
+		
+		<!-- section dedicated to the text -->
+
+		<div class="post-text">
+
+			<h1><%-extrait.title%></h1>
+
+
+			<div class="trix-content edited">  <%-extrait.content%> </div>
+
+			<div class="recommendation-bar"> </div>
+			
+			
+			
+					
+
+					<div class="change-bar" style="margin-bottom:30px;">
+
+
+					<div> 
+
+						<form  action="/extraits/<%=extrait._id%>/likes" method="POST">
+							
+							<button name="likes" class="simple-button"><i id="heart"class="far fa-heart"Style="color:red; font-size:2.5em"></i></button>
+
+						</form>
+						
+
+					</div>
+
+				<% if(currentUser){ %>
+				
+					
+						<form action="/extraits" method="GET">
+						
+						<button class="go-button"> voir les extraits</button>
+					</form>
+				
+					<form action="/extraits/<%=extrait._id%>/edit" method="GET">
+						
+						<button class="go-button"> Modifier</button>
+					</form>
+					
+					<form action="/extraits/<%=extrait._id%>?_method=DELETE" method="POST">
+						
+						<button class="risk go-button"> Suprimer </button>
+					</form>
+			
+				
+       
+        		<% }  %>
+
+        		</div>
+   
+   
+			
+		<!-- comment section -->
+			
+			<div class="commentaire">
+				
+				<h3> Commentaires </h3>
+
+				
+				<% extrait.comments.reverse().forEach(function(comment){ %>
+
+					
+
+					<div class="profil">
+						<div class="pic"> 
+							<i class="fas fa-user-circle"  style="font-size:2.5em;"> </i> 
+							<% if(currentUser){ %>
+	    				
+	    					<form action="/extraits/<%=extrait._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" style="margin: 0 0;">
+							<button  class="risk go-button" style="font-size: 0.5em; padding:0 10px;"> Supprimer</button>
+							</form>
+       
+    						<% }  %> 
+    					</div>
+						<div class="name-comment"> 
+
+							<strong> <%=comment.username%></strong>
+
+
+							<p class="paragraphs"> <%=comment.comment.substring(0,1320)%>
+								
+							<% if(comment.comment.length > 1320){%>
+						
+							<a style="height: 5px; font-size:1.5em; cursor: pointer;" data-toggle="collapse" data-target="#<%=comment._id%>" class="readmore" > lire la suite</a>
+
+						  <div id="<%=comment._id%>" class="collapse" style="font-size: 1em;line-height: 1.25em;">
+						    <%=comment.comment.substring(1320)%>
+						  </div>
+
+
+						  <%}%>
+								
+							</p>
+
+											
+						</div>
+					</div>	
+			
+					
+				<% }); %>
+
+		
+				
+			
+				
+			
+			<!-- Comment form -->
+			<div class="profil" style="margin-top: 30px;">
+				<div class="pic"> <i class="fas fa-user-circle"  style="font-size:2.5em;"> </i> </div>
+				
+				<div class="comment-submit">
+					<form action="/extraits/<%=extrait._id%>/comments" method="POST" style="margin: 0;margin-top: 10px;">
+					
+						<input  class="comment-box" name="commentUsername" placeholder="Nom" style="height:25px; width:15%;">
+						<br>
+						<textarea class="comment-box" name="comment" placeholder="Commentez ici ... " onkeyup="new do_resize(this);" cols="20" rows="1" style="height:150px; width:100%;" ></textarea> 
+						<button class="risk go-button"> commentez! </button>
+					</form>
+				</div>
+				
+			</div>
+			
+		</div>
+			
+			
+			
+
+	</div>
+			
+
+		
+		
+		
+	
+<% include partials/footer %>

@@ -1,0 +1,86 @@
+<% include partials/header1 %>
+
+<title>Centre de controle</title>
+<link rel="icon" href="image/yk.PNG" />
+<% include partials/header2 %>
+
+<div class="center-container"> 
+
+
+	<div class="center-row">
+		
+		<div class="center-box post">
+			
+			<h3> Quick Links</h3>
+
+			<a href="/home" > Accuiel</a>
+			<a href="/about" > A propos de l'auteur</a>
+			<a href="/extraits" > Extraits </a>
+			<a href="/temoignages" > Témoignages</a>
+			<a href="payment" > Dons</a>
+			<a href="/contact" > Nous contacter</a>
+
+		</div>
+
+		<div class="center-box post">
+
+			<h3> Notification</h3>
+
+			<% notification.reverse().forEach(function(notification){ %>
+
+
+
+				<form action="/extraits/notification/<%=notification._id%>?_method=DELETE" method="POST">
+						<button class="simple-button"> <%=notification.title%> <%=notification.note%></button>
+					</form>
+			
+
+			<%	}) %>
+
+
+		</div>
+
+	</div>
+	<div class="center-row">
+
+		<div class="center-box post">
+
+			<h3> Manager les comptes </h3>
+
+			<a href="/register"> Ajouter un Admin </a>
+			<a href="/admins"> Manager les Admins </a>
+
+
+
+		</div>
+		<div class="center-box post">
+			<h3> Statistiques</h3>
+
+			<% extraits.reverse().forEach(function(extrait){ %>
+		
+				
+
+			
+				
+				<div>  <a href="/extraits/<%= extrait._id%>"> <%= extrait.title%></a> <i class="fas fa-heart"Style="color:red;"></i><%=extrait.likes%> </span> <span><i class="far fa-comment" > </i><% if(extrait.comments){%>
+					<%=extrait.comments.length%>
+
+						<%}%>	</span> <span><i class="far fa-eye"></i> </i><%=extrait.numViews%></span>
+				</div> 
+				
+			
+				
+			
+			 
+			<%	}) %>
+
+		</div>
+		
+	</div>
+
+
+</div>
+
+
+
+<% include partials/footer %>

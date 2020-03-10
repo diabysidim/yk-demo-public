@@ -1,0 +1,75 @@
+<% include partials/header1 %>
+
+
+<title>Accueil</title>
+<link rel="icon" href="image/yk.PNG" />
+<% include partials/header2 %>
+
+<div class="home-container" style="padding: 1px;">
+	
+
+
+<section id="intro">
+			<div class="image"> 
+
+				<div class="name">
+				
+							<h2> La traversée du désert </h2>
+
+							<a href="#banner"> Plus d'information</a>
+
+				</div>
+
+
+
+			</div>
+			
+			
+			
+		</section>
+		
+
+		<section id="banner">
+			
+			<% quotes.forEach(function(quote){ %>
+
+				<div> <%-quote.content%> </div>
+				
+			<% if(currentUser){ %>
+			
+						<form action="/quote/<%=quote._id%>/edit" method="GET" style="margin-top:px; z-index: 1000; ">
+
+							<button class="risk"> Modifier </button>
+
+						</form>
+			
+			<%	} %>
+	
+	
+			<%	}) %>
+
+		
+			
+		
+		</section>
+
+		<section id="menu">
+
+			<div class="menu-container">
+				<div class="box image1">  <a href="/about" > L'auteur</a> </div>
+				<div class="box image2">  <a href="/extraits" > Lire des extraits</a></div>
+				<div class="box image3">  <a href="/payments" > Achats et dons</a></div>
+				<div class="box image4">  <a href="/contact"> Nous contacter</a></div>
+				<div class="box image5">  <a href="/temoignages">Témoignages</a></div>
+				
+				
+				
+			</div>
+		</section>
+			
+</div>
+
+		
+
+
+<% include partials/footer %> 

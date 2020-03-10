@@ -1,0 +1,61 @@
+<% include partials/header1 %>
+
+<title>Extraits</title>
+<link rel="icon" href="image/yk.PNG" />
+<% include partials/header2 %>
+<div class="post-container">
+
+
+	
+
+	
+		<% if(currentUser){ %>
+	
+			<form action="/extraits/new " method="GET">
+						<button class="go-button" style=" margin-top:70px"> Creer un extrait</button>
+					</form>
+	
+		<% } %>
+	
+
+	<% extraits.reverse().forEach(function(extrait){ %>
+
+
+			<% if(extrait){%>
+		
+		
+		<div class="post">
+
+				<h1> <%= extrait.title%></h1>
+				<h6><%=extrait.date%></h6>
+				<div class="trix-content preview"><% if(extrait.content){ %> <%-extrait.content%> <% } %> </div>
+				<div class="extrait-bar">
+					
+				<a href="/extraits/<%=extrait._id%> "> lire la suite </a>   
+				
+				<div>  <span> <i class="fas fa-heart"Style="color:red;"></i><%=extrait.likes%> </span> <span><i class="far fa-comment" > </i> <% if(extrait.comments){%>
+
+					<%=extrait.comments.length%>
+
+						<%}%>	
+
+				</span> <span><i class="far fa-eye"></i> </i><%=extrait.numViews%></span></div>
+				
+				</div>
+				
+			
+			 
+				
+				
+			</div>
+
+			<%}%>
+		
+	<%	}) %>
+			
+
+			
+
+		</div>
+
+<% include partials/footer %>

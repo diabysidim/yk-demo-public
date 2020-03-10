@@ -1,0 +1,144 @@
+<% include partials/header1 %>
+
+<title>Temoignage</title>
+<link rel="icon" href="image/yk.PNG" />
+<% include partials/header2 %>
+<div id="post-wraper">
+
+		
+		
+	<div class="post-text">
+
+		<h3> <%-temoignage.name%>  <i class="<%=temoignage.gender%>" style= "<% if(temoignage.gender==='fas fa-mars'){ %> color: blue;  <% } else { %> color: pink; <% } %> " ></i> </h3>
+
+
+			<div class="trix-content edited">  <%-temoignage.content%> </div>
+			
+			<div class="change-bar">
+
+			<form action="/temoignages" method="GET">
+				<button class="go-button"> Voir les autres temoignages</button>
+				
+					
+					
+			</form>
+
+			
+			
+			
+				<% if(currentUser){ %>
+			
+			<form action="/temoignages/<%=temoignage._id%>?_method=DELETE" method="POST">
+				<button class="risk go-button"> Supprimer</button>
+				
+					
+					
+			</form>
+
+
+			<form action="/temoignages/<%=temoignage._id%>/edit-temoignage" method="GET">
+				<button class="risk go-button"> Modifier</button>
+				
+					
+					
+			</form>
+					
+					
+				
+					
+			
+			
+       
+        <% }  %>
+        </div>
+
+
+
+			<div class="commentaire">
+				
+				<h3> Commentaires </h3>
+
+				
+				<% temoignage.comments.reverse().forEach(function(comment){ %>
+
+
+
+
+
+					<div class="profil">
+						<div class="pic"> 
+							<i class="fas fa-user-circle"  style="font-size:2.5em;"> </i> 
+							<% if(currentUser){ %>
+	    				
+	    					<form action="/temoignages/<%=temoignage._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" style="margin: 0 0;">
+							<button  class="risk go-button" style="font-size: 0.5em; padding:0 10px;"> Supprimer</button>
+							</form>
+       
+    						<% }  %> 
+
+
+    					</div>
+						<div class="name-comment"> 
+
+							<%  if(comment.comment){%>
+
+							<strong> <%=comment.username%></strong>
+
+
+							<p class="paragraphs"> <%=comment.comment.substring(0,1320)%>
+								
+							<% if(comment.comment.length > 1320){%>
+						
+							<a style="height: 5px; font-size:1em; cursor: pointer; color: blue" data-toggle="collapse" data-target="#<%=comment._id%>"class="readmore" > ... lire la suite</a>
+
+						  <div id="<%=comment._id%>" class="collapse" style="font-size: 1em;line-height: 1.25em;">
+						    <%=comment.comment.substring(1320)%>
+						  </div>
+
+						  		<%}%>
+						  <%}%>
+								
+							</p>
+
+											
+						</div>
+					</div>				
+					
+				<% }); %>
+				
+			
+				
+			
+			<!-- Comment form -->
+			<div class="profil">
+				<div class="pic"> <i class="fas fa-user-circle"  style="font-size:2.5em;"> </i> </div>
+				
+				<div class="comment-submit">
+					<form action="/temoignages/<%=temoignage._id%>/comments" method="POST" style="margin: 0;margin-top: 10px;">
+					
+						<input  class="comment-box" name="commentUsername" placeholder="name" style="height:25px; width:15%;">
+						<br>
+						<textarea class="comment-box" name="comment" placeholder="Commentez ici ... " onkeyup="new do_resize(this);" cols="20" rows="1" style="height:150px; width:100%;" ></textarea> 
+						<button class="risk go-button"> commentez! </button>
+					</form>
+				</div>
+				
+			</div>
+			
+		</div>
+			
+			
+			
+
+	</div>
+			
+   
+			
+		
+	
+			
+			
+
+</div>
+
+<% include partials/footer%>
